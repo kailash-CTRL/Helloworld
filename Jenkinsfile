@@ -4,13 +4,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
+
         stage('Docker') {
             steps {
                 script {
-                    docker.build('my-app')
+                    bat 'docker build -t hello-docker .'
+                    bat 'docker run hello-docker'
                 }
             }
         }
